@@ -1,0 +1,107 @@
+.document-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 40px 20px;
+}
+
+.document-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.document-header {
+  margin-bottom: 25px;
+}
+
+.document-header h1 {
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+
+.document-header p {
+  color: #666;
+}
+
+.upload-card,
+.summary-card {
+  background: white;
+  border: 1px solid #e2e5ec;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.file-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.file-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.file-name {
+  margin-top: 12px;
+  color: #555;
+}
+
+.summarize-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.summarize-button:hover {
+  background: #1d4ed8;
+}
+
+.summarize-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.document-message {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f1f5f9;
+}
+
+.summary-card h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.summary-card p {
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+  .document-page {
+    padding: 20px 12px;
+  }
+
+  .document-header h1 {
+    font-size: 26px;
+  }
+
+  .upload-card,
+  .summary-card {
+    padding: 18px;
+  }
+}

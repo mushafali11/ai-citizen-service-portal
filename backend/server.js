@@ -8,6 +8,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
 const chatRoutes = require("./routes/chatRoutes");
+const documentRoutes = require("./routes/documentRoutes");
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cors());
 app.use("/api/auth", authRoutes);
 app.use("/api/complaints", complaintRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/documents", documentRoutes);
 
 app.get("/", (req, res) => {
     res.send("Citizen Service Portal API is running!");

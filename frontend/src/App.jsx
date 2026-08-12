@@ -9,6 +9,7 @@ import MyComplaints from "./pages/MyComplaints";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
 import Chatbot from "./pages/Chatbot";
+import DocumentSummarizer from "./pages/DocumentSummarizer";
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
           element={
             <ProtectedRoute>
               <MyComplaints />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/summarize"
+          element={
+            <ProtectedRoute>
+              <DocumentSummarizer />
             </ProtectedRoute>
           }
         />

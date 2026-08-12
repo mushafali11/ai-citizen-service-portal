@@ -125,6 +125,13 @@ function Dashboard() {
           >
             🤖 Chat with Assistant
           </button>
+          
+          <button
+            className="btn btn-secondary"
+            onClick={() => navigate("/summarize")}
+          >
+            📄 Summarize Document
+          </button>
 
           <button
             className="btn btn-danger"
