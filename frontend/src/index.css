@@ -192,3 +192,184 @@ input {
         grid-template-columns: 1fr;
     }
 }
+
+/* ADMIN DASHBOARD */
+
+.admin-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.admin-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.admin-header h1 {
+  margin: 15px 0 5px;
+}
+
+.admin-header p {
+  margin: 0;
+  opacity: 0.7;
+}
+
+.back-button {
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.admin-badge {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.admin-stat-card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.admin-stat-card span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.admin-stat-card strong {
+  font-size: 28px;
+}
+
+.admin-content h2 {
+  margin-bottom: 20px;
+}
+
+.admin-complaints-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-complaint-card {
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.complaint-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.complaint-card-header h3 {
+  margin: 0 0 8px;
+}
+
+.complaint-category {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.status-badge {
+  height: fit-content;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.complaint-description {
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.complaint-user-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.complaint-user-info span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.complaint-user-info strong {
+  font-size: 14px;
+}
+
+.status-update-section {
+  margin-top: 20px;
+}
+
+.status-update-section h4 {
+  margin-bottom: 12px;
+}
+
+.status-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.status-controls select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.update-status-button {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.admin-message {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.empty-state {
+  padding: 40px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+@media (max-width: 700px) {
+  .admin-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .complaint-user-info {
+    grid-template-columns: 1fr;
+  }
+
+  .complaint-card-header {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,188 @@
+.complaints-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+}
+
+.complaints-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.complaints-header {
+  margin-bottom: 30px;
+}
+
+.complaints-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.complaints-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.complaints-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.complaint-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.complaint-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.complaint-item h2 {
+  margin: 0 0 15px;
+  font-size: 21px;
+}
+
+.complaint-description {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.complaint-details {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.complaint-detail {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.complaint-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+}
+
+.edit-btn,
+.delete-btn,
+.save-btn,
+.cancel-btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.cancel-btn {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.edit-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.complaints-message {
+  margin: 20px 0;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.empty-state {
+  background: white;
+  padding: 40px;
+  border-radius: 14px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+}
+
+.back-button {
+  margin-bottom: 25px;
+  background: transparent;
+  border: none;
+  color: #2563eb;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .complaints-page {
+    padding: 30px 15px;
+  }
+
+  .complaint-top {
+    flex-direction: column;
+  }
+
+  .complaint-details {
+    grid-template-columns: 1fr;
+  }
+
+  .complaint-actions {
+    flex-wrap: wrap;
+  }
+}

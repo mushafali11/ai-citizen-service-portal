@@ -1,123 +1,121 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Auth.css";
 
 function Register() {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: ""
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const [message, setMessage] = useState("");
-    const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        formData
+      );
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+      setMessage(response.data.message);
 
-        try {
-            const response = await axios.post(
-                "http://localhost:5000/api/auth/register",
-                formData
-            );
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+    } catch (error) {
+      setMessage(
+        error.response?.data?.message ||
+        "Registration failed"
+      );
+    }
+  };
 
-            setMessage(response.data.message);
+  return (
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="auth-card">
+          <div className="auth-logo">
+            Citizen Portal
+          </div>
 
-            setTimeout(() => {
-                navigate("/login");
-            }, 1000);
+          <h1>Create Account</h1>
 
-        } catch (error) {
-            setMessage(
-                error.response?.data?.message ||
-                "Registration failed"
-            );
-        }
-    };
+          <p className="auth-subtitle">
+            Create your account to submit and track your complaints.
+          </p>
 
-    return (
-        <div className="auth-page">
-            <div className="auth-card">
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <label>Full Name</label>
 
-                <h1 className="portal-title">
-                    Citizen Service Portal
-                </h1>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your full name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
 
-                <p className="portal-subtitle">
-                    Create your citizen account
-                </p>
+            <label>Email Address</label>
 
-                <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
 
-                    <div className="form-group">
-                        <label>Full Name</label>
-                        <input
-                            className="form-input"
-                            type="text"
-                            name="name"
-                            placeholder="Enter your full name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+            <label>Password</label>
 
-                    <div className="form-group">
-                        <label>Email Address</label>
-                        <input
-                            className="form-input"
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Minimum 8 characters"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              minLength={8}
+            />
 
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            className="form-input"
-                            type="password"
-                            name="password"
-                            placeholder="Minimum 8 characters"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                            minLength={8}
-                        />
-                    </div>
+            <button className="auth-submit" type="submit">
+              Create Account
+            </button>
+          </form>
 
-                    <button className="primary-button" type="submit">
-                        Create Account
-                    </button>
+          {message && (
+            <p className="auth-message">
+              {message}
+            </p>
+          )}
 
-                </form>
-
-                {message && (
-                    <div className="message">
-                        {message}
-                    </div>
-                )}
-
-                <button
-                    className="secondary-button"
-                    onClick={() => navigate("/login")}
-                >
-                    Already have an account? Login
-                </button>
-
-            </div>
+          <div className="auth-footer">
+            Already have an account?{" "}
+            <span
+              className="auth-link"
+              onClick={() => navigate("/login")}
+            >
+              Sign in
+            </span>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Register;
