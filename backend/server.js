@@ -3,9 +3,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
 
@@ -16,6 +18,7 @@ app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/complaints", complaintRoutes);
+app.use("/api/chat", chatRoutes);
 
 app.get("/", (req, res) => {
     res.send("Citizen Service Portal API is running!");

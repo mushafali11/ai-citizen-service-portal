@@ -1,0 +1,156 @@
+.chatbot-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding: 40px 20px;
+}
+
+.chatbot-container {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.chatbot-header {
+  margin-bottom: 25px;
+}
+
+.chatbot-header h1 {
+  margin-bottom: 8px;
+  font-size: 32px;
+}
+
+.chatbot-header p {
+  color: #666;
+}
+
+.chat-window {
+  background: white;
+  border: 1px solid #e2e5ec;
+  border-radius: 12px;
+  min-height: 450px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.message-row {
+  display: flex;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-row.bot {
+  justify-content: flex-start;
+}
+
+.chat-message {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  line-height: 1.5;
+}
+
+.user-message {
+  background: #2563eb;
+  color: white;
+  border-bottom-right-radius: 3px;
+}
+
+.bot-message {
+  background: #f1f3f6;
+  color: #222;
+  border-bottom-left-radius: 3px;
+}
+
+.typing {
+  color: #777;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: #2563eb;
+}
+
+.send-button {
+  padding: 0 25px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background: #1d4ed8;
+}
+
+.send-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.back-button {
+  margin-bottom: 25px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .chatbot-page {
+    padding: 20px 12px;
+  }
+
+  .chat-message {
+    max-width: 85%;
+  }
+
+  .chat-form {
+    flex-direction: column;
+  }
+
+  .send-button {
+    padding: 14px;
+  }
+}
+.clear-button {
+  margin-top: 15px;
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.clear-button:hover {
+  background: #f3f4f6;
+}
+
+.clear-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

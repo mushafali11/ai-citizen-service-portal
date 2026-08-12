@@ -120,6 +120,13 @@ function Dashboard() {
           </button>
 
           <button
+            className="btn btn-secondary"
+            onClick={() => navigate("/chatbot")}
+          >
+            🤖 Chat with Assistant
+          </button>
+
+          <button
             className="btn btn-danger"
             onClick={handleLogout}
           >
