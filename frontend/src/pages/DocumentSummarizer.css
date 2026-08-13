@@ -1,107 +1,210 @@
 .document-page {
   min-height: 100vh;
-  background: #f5f7fb;
-  padding: 40px 20px;
+  background: #f5f7f6;
+  padding: 45px 20px;
+  font-family: Arial, sans-serif;
+  color: #1f2937;
+  position: relative;
+  overflow: hidden;
+}
+
+.document-page::before {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: rgba(11, 107, 79, 0.06);
+  border-radius: 50%;
+  top: -250px;
+  right: -180px;
+  pointer-events: none;
+}
+
+.document-page::after {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: rgba(11, 107, 79, 0.05);
+  border-radius: 50%;
+  bottom: -220px;
+  left: -180px;
+  pointer-events: none;
 }
 
 .document-container {
-  max-width: 850px;
+  max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.document-header {
+/* Back Button */
+
+.back-button {
   margin-bottom: 25px;
+  background: transparent;
+  border: none;
+  color: #0b6b4f;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: 0.2s;
+}
+
+.back-button:hover {
+  color: #08533d;
+  transform: translateX(-3px);
+}
+
+/* Header */
+
+.document-header {
+  margin-bottom: 28px;
 }
 
 .document-header h1 {
-  margin-bottom: 8px;
-  font-size: 32px;
+  margin: 0 0 8px;
+  font-size: 34px;
+  color: #17352c;
 }
 
 .document-header p {
-  color: #666;
+  margin: 0;
+  color: #6b7c76;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.upload-card,
-.summary-card {
-  background: white;
-  border: 1px solid #e2e5ec;
-  border-radius: 12px;
-  padding: 25px;
+/* Upload Card */
+
+.upload-card {
+  background: #ffffff;
+  border: 1px solid #e1e8e4;
+  border-radius: 16px;
+  padding: 32px;
   margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(20, 60, 45, 0.06);
 }
 
 .file-label {
   display: block;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #29483d;
+  margin-bottom: 12px;
 }
 
 .file-input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 13px;
   box-sizing: border-box;
+  border: 1px dashed #a8c9b9;
+  border-radius: 9px;
+  background: #f7faf8;
+  cursor: pointer;
+  color: #52635c;
+  font-family: inherit;
+  transition: 0.2s;
+}
+
+.file-input:hover {
+  border-color: #0b6b4f;
+  background: #f1f8f4;
 }
 
 .file-name {
-  margin-top: 12px;
-  color: #555;
+  margin: 15px 0 0;
+  padding: 12px 14px;
+  background: #edf8f2;
+  border: 1px solid #c7e7d5;
+  border-radius: 8px;
+  color: #087252;
+  font-size: 13px;
+  word-break: break-word;
 }
+
+/* Summarize Button */
 
 .summarize-button {
-  margin-top: 20px;
+  margin-top: 22px;
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   border: none;
   border-radius: 8px;
-  background: #2563eb;
+  background: #0b6b4f;
   color: white;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.summarize-button:hover {
-  background: #1d4ed8;
+.summarize-button:hover:not(:disabled) {
+  background: #08533d;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(11, 107, 79, 0.18);
 }
 
 .summarize-button:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
+/* Message */
+
 .document-message {
-  margin-top: 18px;
-  padding: 12px;
+  margin-top: 20px;
+  padding: 13px 16px;
   border-radius: 8px;
-  background: #f1f5f9;
+  background: #edf8f2;
+  border: 1px solid #c7e7d5;
+  color: #087252;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Summary Card */
+
+.summary-card {
+  background: #ffffff;
+  border: 1px solid #e1e8e4;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 30px rgba(20, 60, 45, 0.06);
 }
 
 .summary-card h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
+  margin: 0 0 18px;
+  color: #17352c;
+  font-size: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e7eeea;
 }
 
 .summary-card p {
-  line-height: 1.7;
-  color: #333;
+  margin: 0;
+  line-height: 1.8;
+  color: #52635c;
+  font-size: 14px;
   white-space: pre-wrap;
 }
 
+/* Responsive */
+
 @media (max-width: 600px) {
   .document-page {
-    padding: 20px 12px;
+    padding: 30px 15px;
   }
 
   .document-header h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .upload-card,
   .summary-card {
-    padding: 18px;
+    padding: 24px 20px;
+    border-radius: 14px;
   }
 }

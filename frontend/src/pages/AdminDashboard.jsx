@@ -1,5 +1,7 @@
+import "./AdminDashboard.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 
 function AdminDashboard() {
   const [complaints, setComplaints] = useState([]);

@@ -64,7 +64,9 @@ function AnalyticsDashboard() {
   if (loading) {
     return (
       <div className="analytics-page">
-        <p>Loading analytics...</p>
+        <div className="analytics-loading">
+          Loading analytics...
+        </div>
       </div>
     );
   }
@@ -72,14 +74,18 @@ function AnalyticsDashboard() {
   if (message) {
     return (
       <div className="analytics-page">
-        <p>{message}</p>
+        <div className="analytics-container">
+          <button
+            className="analytics-back-button"
+            onClick={() => navigate("/admin")}
+          >
+            ← Back to Admin Dashboard
+          </button>
 
-        <button
-          className="back-button"
-          onClick={() => navigate("/admin")}
-        >
-          ← Back to Admin Dashboard
-        </button>
+          <div className="analytics-error">
+            {message}
+          </div>
+        </div>
       </div>
     );
   }
@@ -106,51 +112,86 @@ function AnalyticsDashboard() {
     complaints: item.count,
   }));
 
+  const chartColors = [
+    "#d6a23a",
+    "#2f7d68",
+    "#16804b",
+  ];
+
   return (
     <div className="analytics-page">
       <div className="analytics-container">
 
         <button
-          className="back-button"
+          className="analytics-back-button"
           onClick={() => navigate("/admin")}
         >
           ← Back to Admin Dashboard
         </button>
 
-        <button
-          className="btn btn-primary"
-          onClick={() => navigate("/analytics")}
-        >
-          View Analytics 📊
-        </button>
+        <div className="analytics-hero">
+          <div>
+            <span className="analytics-label">
+              ADMIN INSIGHTS
+            </span>
 
-        <div className="analytics-header">
-          <h1>Complaint Analytics 📊</h1>
-          <p>
-            Overview and insights from citizen complaints.
-          </p>
+            <h1>Complaint Analytics</h1>
+
+            <p>
+              Monitor complaint activity, track progress, and
+              understand service trends across the Citizen Portal.
+            </p>
+          </div>
+
+          <div className="analytics-hero-icon">
+            📊
+          </div>
         </div>
 
         <div className="analytics-stats">
 
-          <div className="analytics-card">
-            <h2>{analytics.totalComplaints}</h2>
-            <p>Total Complaints</p>
+          <div className="analytics-card total-card">
+            <div className="analytics-card-icon">
+              📋
+            </div>
+
+            <div>
+              <h2>{analytics.totalComplaints}</h2>
+              <p>Total Complaints</p>
+            </div>
           </div>
 
-          <div className="analytics-card">
-            <h2>{analytics.statusStats.pending}</h2>
-            <p>Pending</p>
+          <div className="analytics-card pending-card">
+            <div className="analytics-card-icon">
+              ⏳
+            </div>
+
+            <div>
+              <h2>{analytics.statusStats.pending}</h2>
+              <p>Pending</p>
+            </div>
           </div>
 
-          <div className="analytics-card">
-            <h2>{analytics.statusStats.inProgress}</h2>
-            <p>In Progress</p>
+          <div className="analytics-card progress-card">
+            <div className="analytics-card-icon">
+              🔄
+            </div>
+
+            <div>
+              <h2>{analytics.statusStats.inProgress}</h2>
+              <p>In Progress</p>
+            </div>
           </div>
 
-          <div className="analytics-card">
-            <h2>{analytics.statusStats.resolved}</h2>
-            <p>Resolved</p>
+          <div className="analytics-card resolved-card">
+            <div className="analytics-card-icon">
+              ✓
+            </div>
+
+            <div>
+              <h2>{analytics.statusStats.resolved}</h2>
+              <p>Resolved</p>
+            </div>
           </div>
 
         </div>
@@ -158,9 +199,16 @@ function AnalyticsDashboard() {
         <div className="charts-grid">
 
           <div className="chart-card">
-            <h2>Complaint Status</h2>
+            <div className="chart-heading">
+              <div>
+                <h2>Complaint Status</h2>
+                <p>
+                  Distribution of all submitted complaints
+                </p>
+              </div>
+            </div>
 
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={320}>
               <PieChart>
                 <Pie
                   data={statusData}
@@ -168,17 +216,15 @@ function AnalyticsDashboard() {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  outerRadius={100}
+                  innerRadius={55}
+                  outerRadius={105}
+                  paddingAngle={4}
                   label
                 >
                   {statusData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={[
-                        "#f59e0b",
-                        "#3b82f6",
-                        "#22c55e",
-                      ][index]}
+                      fill={chartColors[index]}
                     />
                   ))}
                 </Pie>
@@ -190,15 +236,38 @@ function AnalyticsDashboard() {
           </div>
 
           <div className="chart-card">
-            <h2>Complaints by Category</h2>
+            <div className="chart-heading">
+              <div>
+                <h2>Complaints by Category</h2>
+                <p>
+                  Issues reported across different service areas
+                </p>
+              </div>
+            </div>
 
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={categoryData}>
-                <CartesianGrid strokeDasharray="3 3" />
+            <ResponsiveContainer width="100%" height={320}>
+              <BarChart
+                data={categoryData}
+                margin={{
+                  top: 10,
+                  right: 10,
+                  left: -20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  vertical={false}
+                />
 
-                <XAxis dataKey="name" />
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: 12 }}
+                />
 
-                <YAxis allowDecimals={false} />
+                <YAxis
+                  allowDecimals={false}
+                />
 
                 <Tooltip />
 
@@ -207,8 +276,8 @@ function AnalyticsDashboard() {
                 <Bar
                   dataKey="complaints"
                   name="Complaints"
-                  fill="#2563eb"
-                  radius={[6, 6, 0, 0]}
+                  fill="#0b6b4f"
+                  radius={[8, 8, 0, 0]}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -217,41 +286,84 @@ function AnalyticsDashboard() {
         </div>
 
         <div className="recent-complaints">
-          <h2>Recent Complaints</h2>
+
+          <div className="recent-header">
+            <div>
+              <span className="section-label">
+                LATEST ACTIVITY
+              </span>
+
+              <h2>Recent Complaints</h2>
+
+              <p>
+                A quick overview of the latest complaints
+                submitted through the portal.
+              </p>
+            </div>
+
+            <span className="recent-count">
+              {analytics.recentComplaints.length} Recent
+            </span>
+          </div>
 
           {analytics.recentComplaints.length === 0 ? (
-            <p>No complaints found.</p>
+            <div className="analytics-empty">
+              No complaints found.
+            </div>
           ) : (
             <div className="recent-list">
-              {analytics.recentComplaints.map((complaint) => (
-                <div
-                  className="recent-item"
-                  key={complaint._id}
-                >
-                  <div>
-                    <h3>{complaint.title}</h3>
 
-                    <p>
-                      Category: {complaint.category}
-                    </p>
-
-                    <p>
-                      Submitted by:{" "}
-                      {complaint.user?.name || "Unknown"}
-                    </p>
-                  </div>
-
-                  <span
-                    className={`status-badge ${complaint.status
-                      .toLowerCase()
-                      .replace(" ", "-")}`}
+              {analytics.recentComplaints.map(
+                (complaint) => (
+                  <div
+                    className="recent-item"
+                    key={complaint._id}
                   >
-                    {complaint.status}
-                  </span>
-                </div>
-              ))}
+
+                    <div className="recent-complaint-main">
+
+                      <div className="recent-icon">
+                        📄
+                      </div>
+
+                      <div>
+                        <h3>
+                          {complaint.title}
+                        </h3>
+
+                        <div className="recent-meta">
+                          <span>
+                            {complaint.category}
+                          </span>
+
+                          <span className="meta-dot">
+                            •
+                          </span>
+
+                          <span>
+                            {complaint.user?.name ||
+                              "Unknown"}
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <span
+                      className={`status-badge ${complaint.status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    >
+                      {complaint.status}
+                    </span>
+
+                  </div>
+                )
+              )}
+
             </div>
           )}
+
         </div>
 
       </div>
