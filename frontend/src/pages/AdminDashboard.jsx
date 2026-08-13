@@ -95,6 +95,12 @@ function AdminDashboard() {
             >
               ← Back to Dashboard
             </button>
+            <button
+              className="btn btn-primary"
+              onClick={() => navigate("/analytics")}
+            >
+              View Analytics 📊
+            </button>
 
             <h1>Admin Dashboard</h1>
             <p>Manage and update all citizen complaints</p>
